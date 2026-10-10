@@ -11,6 +11,41 @@ export const profile = {
   githubUser: "nganchiho",
 };
 
+export const now = {
+  updated: "Oct 2026",
+  items: [
+    { label: "building", text: "DASH, the driver dashboard for Red Bird Racing's Formula Student car", href: "/projects/dash/" },
+  ],
+};
+
+export const hobbies = [
+  { name: "motorsports", note: "the reason I write firmware for race cars" },
+  { name: "coding", note: "side projects, usually started at midnight" },
+  { name: "gym", note: "lifting, and not skipping leg day" },
+  { name: "rock climbing", note: "problem solving, but vertical" },
+  { name: "archery", note: "aim, breathe, release" },
+  { name: "airsoft", note: "weekend skirmishes" },
+  { name: "photography", note: "cars, people, and the occasional LCD" },
+  { name: "gaming", note: "the off switch" },
+  { name: "music", note: "always on while coding" },
+  { name: "cooking", note: "fuel for all of the above" },
+];
+
+export const top = [
+  { pid: 1, user: "chiho", cpu: "64.2", mem: "38.0", time: "∞", cmd: "coding --until 3am" },
+  { pid: 42, user: "chiho", cpu: "21.7", mem: "12.4", time: "2h/day", cmd: "gym --no-skip-leg-day" },
+  { pid: 404, user: "root", cpu: "99.9", mem: "0.5", time: "always", cmd: "caffeine.d --daemon" },
+  { pid: 1337, user: "chiho", cpu: "7.1", mem: "4.2", time: "0:00", cmd: "sleep" },
+];
+
+export const photos = [
+  {
+    src: "/photos/dash-lcd.jpg",
+    alt: "Close-up of a blue 20×4 character LCD showing large pixel digits",
+    caption: "dash-lcd.jpg · DASH up close, one 5×8 cell at a time",
+  },
+];
+
 export const education = [
   {
     school: "Hong Kong University of Science and Technology",
@@ -70,6 +105,7 @@ export type Project = {
   stack: string[];
   summary: string;
   sections: { heading: string; body: string[] }[];
+  images?: { src: string; alt: string; caption: string }[];
   links?: { label: string; href: string }[];
 };
 
@@ -81,6 +117,13 @@ export const projects: Project[] = [
     stack: ["C++", "AVR", "CAN", "I2C"],
     summary:
       "Bare-metal firmware for an ATmega328P that decodes multi-bus CAN telemetry and drives the driver's 20×4 LCD.",
+    images: [
+      {
+        src: "/photos/dash-lcd.jpg",
+        alt: "Close-up of the DASH 20×4 character LCD showing large pixel digits",
+        caption: "the 20×4 LCD, close enough to count pixels",
+      },
+    ],
     sections: [
       {
         heading: "What it does",

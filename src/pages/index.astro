@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Prompt from "../components/Prompt.astro";
-import { profile, education, experience, projects, skills } from "../data/site";
+import { profile, education, experience, projects, skills, now, hobbies, top, photos } from "../data/site";
 ---
 <Base>
   <section class="hero" aria-labelledby="name">
@@ -16,6 +16,16 @@ import { profile, education, experience, projects, skills } from "../data/site";
       <span class="sep">|</span>
       <a href={`mailto:${profile.email}`}>{profile.email}</a>
     </p>
+  </section>
+
+  <section id="now" aria-label="Now">
+    <Prompt cmd="./now" />
+    <div class="now">
+      {now.items.map((n) => (
+        <p><span class="now-label">[{n.label}]</span> {n.href ? <a href={n.href}>{n.text}</a> : n.text}</p>
+      ))}
+      <p class="dim now-upd">last updated {now.updated}</p>
+    </div>
   </section>
 
   <section id="experience" aria-label="Experience">
@@ -61,6 +71,43 @@ import { profile, education, experience, projects, skills } from "../data/site";
 {Object.entries(skills).map(([k, v], i, arr) => (
   <span>  <span class="k">"{k}"</span>: [{v.map((s, j) => (<span><span class="s">"{s}"</span>{j < v.length - 1 ? ", " : ""}</span>))}]{i < arr.length - 1 ? "," : ""}{"\n"}</span>
 ))}{"}"}</code></pre>
+  </section>
+
+  <section id="top" aria-label="What's running">
+    <Prompt cmd="top -n 1" />
+    <div class="top-wrap">
+      <table class="top">
+        <thead>
+          <tr><th>PID</th><th>USER</th><th>%CPU</th><th>%MEM</th><th>TIME</th><th>COMMAND</th></tr>
+        </thead>
+        <tbody>
+          {top.map((t) => (
+            <tr><td>{t.pid}</td><td>{t.user}</td><td class="num">{t.cpu}</td><td class="num">{t.mem}</td><td>{t.time}</td><td class="cmd">{t.cmd}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="hobbies" aria-label="Hobbies">
+    <Prompt cmd="cat hobbies.txt" />
+    <ul class="hobbies">
+      {hobbies.map((h) => (
+        <li><span class="h-name">{h.name}</span><span class="dim">{h.note}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="photos" aria-label="Photos">
+    <Prompt cmd="ls ~/photos" />
+    <div class="photos">
+      {photos.map((p) => (
+        <figure>
+          <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
+          <figcaption>{p.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
   </section>
 
   <section id="education" aria-label="Education">
@@ -130,6 +177,35 @@ import { profile, education, experience, projects, skills } from "../data/site";
 
   .edu li { display: flex; flex-direction: column; margin: 0 0 14px; }
   .edu li span:not(.role) { font-size: 13px; }
+
+  .now { border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; background: var(--bg); }
+  .now p { margin: 0; }
+  .now-label { color: var(--amber); }
+  .now-upd { font-size: 12px; margin-top: 6px !important; }
+
+  .top-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+  .top { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+  .top th { text-align: left; font-weight: 500; color: var(--bg); background: var(--green); padding: 4px 12px; }
+  .top td { padding: 4px 12px; color: var(--muted); }
+  .top td.num { color: var(--text); }
+  .top td.cmd { color: var(--green); }
+  .top tbody tr:first-child td { padding-top: 8px; }
+  .top tbody tr:last-child td { padding-bottom: 8px; }
+  @media (max-width: 640px) {
+    .top th:nth-child(2), .top td:nth-child(2), .top th:nth-child(4), .top td:nth-child(4) { display: none; }
+    .top th, .top td { padding-left: 10px; padding-right: 10px; }
+  }
+
+  .hobbies { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 24px; }
+  .hobbies li { display: flex; flex-direction: column; padding-left: 18px; position: relative; }
+  .hobbies li::before { content: "*"; position: absolute; left: 0; color: var(--dim); }
+  .h-name { color: var(--text); }
+  .hobbies .dim { font-size: 13px; }
+
+  .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .photos figure { margin: 0; }
+  .photos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; border: 1px solid var(--line); border-radius: 6px; }
+  .photos figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; }
 
   .contact li { margin: 4px 0; }
   .end { margin-top: 24px; }
