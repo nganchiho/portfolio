@@ -27,6 +27,7 @@ export const hobbies = [
   { name: "rock climbing", note: "problem solving, but vertical" },
   { name: "archery", note: "aim, breathe, release" },
   { name: "airsoft", note: "weekend skirmishes" },
+  { name: "aviation", note: "anything with wings and an engine" },
   { name: "photography", note: "cars, people, and the occasional LCD" },
   { name: "gaming", note: "the off switch" },
   { name: "claude prompting", note: "rewriting one prompt ten times until it's just right" },
@@ -47,6 +48,17 @@ export const top = [
 ];
 
 export const photos = [
+  {
+    src: "/photos/dash-wheel.jpg",
+    alt: "DASH LCD mounted on the steering wheel of the Formula Student car",
+    caption: "dash-wheel.jpg · DASH live on the steering wheel",
+  },
+  {
+    src: "/photos/dash-pcb.jpg",
+    alt: "KiCad layout of the Dash 1.2 PCB",
+    caption: "dash-pcb.jpg · Dash 1.2, PCB and code by me",
+    wide: true,
+  },
   {
     src: "/photos/dash-lcd.jpg",
     alt: "Close-up of a blue 20×4 character LCD showing large pixel digits",
@@ -113,7 +125,7 @@ export type Project = {
   stack: string[];
   summary: string;
   sections: { heading: string; body: string[] }[];
-  images?: { src: string; alt: string; caption: string }[];
+  images?: { src: string; alt: string; caption: string; wide?: boolean }[];
   links?: { label: string; href: string }[];
 };
 
@@ -122,10 +134,21 @@ export const projects: Project[] = [
     slug: "dash",
     name: "Formula Student dashboard (DASH)",
     year: "2026",
-    stack: ["C++", "AVR", "CAN", "I2C"],
+    stack: ["C++", "AVR", "CAN", "I2C", "KiCad"],
     summary:
       "Bare-metal firmware for an ATmega328P that decodes multi-bus CAN telemetry and drives the driver's 20×4 LCD.",
     images: [
+      {
+        src: "/photos/dash-wheel.jpg",
+        alt: "DASH LCD mounted on the steering wheel showing speed, RPM, throttle, VCU warnings, and odometer",
+        caption: "on the wheel: speed, RPM, throttle, VCU warnings, and odometer",
+      },
+      {
+        src: "/photos/dash-pcb.jpg",
+        alt: "KiCad layout of the Dash 1.2 PCB with three CAN transceivers, microSD slot, and power regulation",
+        caption: "Dash 1.2 PCB in KiCad",
+        wide: true,
+      },
       {
         src: "/photos/dash-lcd.jpg",
         alt: "Close-up of the DASH 20×4 character LCD showing large pixel digits",
@@ -137,6 +160,13 @@ export const projects: Project[] = [
         heading: "What it does",
         body: [
           "DASH sits in the cockpit and turns raw CAN traffic from several buses into something a driver can read at speed. Telemetry is decoded on an ATmega328P and shown across four selectable pages on a 20×4 character LCD.",
+        ],
+      },
+      {
+        heading: "Hardware",
+        body: [
+          "I designed the Dash 1.2 PCB in KiCad, building on the original V1 board by lknetwork.",
+          "Three CAN transceivers for the car's separate buses, a microSD slot for logging, onboard power regulation, and an ISP header for flashing the ATmega328P.",
         ],
       },
       {

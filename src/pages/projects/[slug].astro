@@ -10,6 +10,7 @@ export function getStaticPaths() {
 const { project } = Astro.props as { project: Project };
 const idx = projects.findIndex((p) => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
+const [hero, ...gallery] = project.images ?? [];
 ---
 <Base title={project.name} description={project.summary}>
   <article>
@@ -20,12 +21,12 @@ const next = projects[(idx + 1) % projects.length];
     <div class="tags">{project.stack.map((s) => <span class="tag">{s}</span>)}</div>
     <p class="summary">{project.summary}</p>
 
-    {project.images && project.images.map((img) => (
-      <figure class="shot">
-        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-        <figcaption>{img.caption}</figcaption>
+    {hero && (
+      <figure class={hero.wide ? "shot wide" : "shot"}>
+        <img src={hero.src} alt={hero.alt} decoding="async" />
+        <figcaption>{hero.caption}</figcaption>
       </figure>
-    ))}
+    )}
 
     {project.sections.map((s) => (
       <section class="sec">
@@ -43,6 +44,20 @@ const next = projects[(idx + 1) % projects.length];
       </section>
     )}
 
+    {gallery.length > 0 && (
+      <section class="sec">
+        <h2>## Gallery</h2>
+        <div class="gallery">
+          {gallery.map((img) => (
+            <figure class={img.wide ? "wide" : ""}>
+              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              <figcaption>{img.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
     <nav class="next" aria-label="Next project">
       <span class="dim">next:</span> <a href={`/projects/${next.slug}/`}>{next.slug}/</a>
     </nav>
@@ -56,6 +71,7 @@ const next = projects[(idx + 1) % projects.length];
   .tags { margin: 0 0 8px; }
   .summary { font-size: 16px; max-width: 62ch; margin: 0 0 36px; }
   .shot { margin: 0 0 36px; max-width: 420px; }
+  .shot.wide { max-width: 100%; }
   .shot img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; }
   .shot figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; }
   .sec { margin: 0 0 32px; }
@@ -63,5 +79,11 @@ const next = projects[(idx + 1) % projects.length];
   .sec p { color: var(--muted); max-width: 66ch; margin: 0; }
   .points li { color: var(--muted); padding-left: 18px; position: relative; margin: 0 0 4px; }
   .points li::before { content: ">"; position: absolute; left: 0; color: var(--dim); }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .gallery figure { margin: 0; }
+  .gallery figure.wide { grid-column: 1 / -1; }
+  .gallery img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; }
+  .gallery figure:not(.wide) img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .gallery figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; }
   .next { border-top: 1px dashed var(--line); padding-top: 18px; margin-bottom: 32px; font-size: 14px; }
 </style>

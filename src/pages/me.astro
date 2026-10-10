@@ -59,7 +59,7 @@ const nav = [
     <Prompt cmd="ls ~/photos" />
     <div class="photos">
       {photos.map((p) => (
-        <figure>
+        <figure class={p.wide ? "wide" : ""}>
           <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
           <figcaption>{p.caption}</figcaption>
         </figure>
