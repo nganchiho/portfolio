@@ -1,11 +1,21 @@
 ---
 import { profile } from "../data/site";
+import "../styles/sections.css";
 
+type NavLink = { href: string; label: string; match?: string };
 interface Props {
   title?: string;
   description?: string;
+  nav?: NavLink[];
 }
-const { title, description = profile.about } = Astro.props;
+const workNav: NavLink[] = [
+  { href: "/", label: "~/work", match: "/" },
+  { href: "/#experience", label: "./experience" },
+  { href: "/#projects", label: "./projects", match: "/projects" },
+  { href: "/#contact", label: "./contact" },
+  { href: "/me/", label: "cd ~/me" },
+];
+const { title, description = profile.about, nav = workNav } = Astro.props;
 const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.tagline}`;
 const path = Astro.url.pathname;
 ---
@@ -33,10 +43,10 @@ const path = Astro.url.pathname;
         <span class="bar-title">{profile.handle}@{profile.host}: ~{path === "/" ? "" : path.replace(/\/$/, "")}</span>
       </header>
       <nav class="nav" aria-label="Main">
-        <a href="/" class={path === "/" ? "active" : ""}>~/home</a>
-        <a href="/#experience">./experience</a>
-        <a href="/#projects" class={path.startsWith("/projects") ? "active" : ""}>./projects</a>
-        <a href="/#contact">./contact</a>
+        {nav.map((l) => {
+          const active = l.match && (l.match === "/" ? path === "/" : path.startsWith(l.match));
+          return <a href={l.href} class={active ? "active" : ""}>{l.label}</a>;
+        })}
       </nav>
       <main>
         <slot />

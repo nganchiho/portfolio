@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Prompt from "../components/Prompt.astro";
-import { profile, education, experience, projects, skills, now, hobbies, top, topStatus, photos } from "../data/site";
+import { profile, education, experience, projects, skills, now } from "../data/site";
 ---
 <Base>
   <section class="hero" aria-labelledby="name">
@@ -73,44 +73,6 @@ import { profile, education, experience, projects, skills, now, hobbies, top, to
 ))}{"}"}</code></pre>
   </section>
 
-  <section id="top" aria-label="What's running">
-    <Prompt cmd="top -n 1" />
-    <p class="top-status"><span class="dim">status:</span> {topStatus}</p>
-    <div class="top-wrap">
-      <table class="top">
-        <thead>
-          <tr><th>PID</th><th>USER</th><th>%CPU</th><th>%MEM</th><th>TIME</th><th>COMMAND</th></tr>
-        </thead>
-        <tbody>
-          {top.map((t) => (
-            <tr><td>{t.pid}</td><td>{t.user}</td><td class="num">{t.cpu}</td><td class="num">{t.mem}</td><td>{t.time}</td><td class="cmd">{t.cmd}</td></tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="hobbies" aria-label="Hobbies">
-    <Prompt cmd="cat hobbies.txt" />
-    <ul class="hobbies">
-      {hobbies.map((h) => (
-        <li><span class="h-name">{h.name}</span><span class="dim">{h.note}</span></li>
-      ))}
-    </ul>
-  </section>
-
-  <section id="photos" aria-label="Photos">
-    <Prompt cmd="ls ~/photos" />
-    <div class="photos">
-      {photos.map((p) => (
-        <figure>
-          <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
-          <figcaption>{p.caption}</figcaption>
-        </figure>
-      ))}
-    </div>
-  </section>
-
   <section id="education" aria-label="Education">
     <Prompt cmd="cat education.txt" />
     <ul class="edu">
@@ -131,85 +93,7 @@ import { profile, education, experience, projects, skills, now, hobbies, top, to
       <li><span class="dim">[email]</span> <a href={`mailto:${profile.email}`}>{profile.email}</a></li>
       <li><span class="dim">[github]</span> <a href={profile.github} rel="noopener">github.com/{profile.githubUser}</a></li>
     </ul>
+    <p class="muted off-duty">Off duty? <a href="/me/">cd ~/me</a> for hobbies, photos, and what's running.</p>
     <p class="prompt end"><span class="user">{profile.handle}@{profile.host}</span>:<span style="color:var(--blue)">~</span>$ <span class="block" aria-hidden="true"></span></p>
   </section>
 </Base>
-
-<style>
-  .name { font-size: clamp(30px, 7vw, 44px); color: var(--green); font-weight: 700; letter-spacing: -0.02em; }
-  .cursor { animation: blink 1.1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .cursor, .block { animation: none; } }
-  .tagline { color: var(--muted); margin: 4px 0 20px; }
-  .about { max-width: 62ch; margin: 0 0 16px; }
-  .meta { font-size: 13px; margin: 0; }
-  .sep { color: var(--line); margin: 0 8px; }
-
-  .log { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 1px solid var(--line); }
-  .log > li { position: relative; margin: 0 0 26px; }
-  .log > li::before {
-    content: ""; position: absolute; left: -21px; top: 9px;
-    width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--green);
-  }
-  .log-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 12px; }
-  .role { color: var(--text); font-weight: 500; }
-  .period { color: var(--dim); font-size: 13px; }
-  .org { color: var(--blue); font-size: 13px; margin: 0 0 6px; }
-  .points li { color: var(--muted); padding-left: 18px; position: relative; }
-  .points li::before { content: ">"; position: absolute; left: 0; color: var(--dim); }
-
-  .projects li + li { margin-top: 10px; }
-  .proj {
-    display: flex; gap: 16px; padding: 14px 16px; color: inherit;
-    border: 1px solid var(--line); border-radius: 6px; transition: border-color .15s, background .15s;
-  }
-  .proj:hover { text-decoration: none; border-color: var(--green); background: #0f1a14; }
-  .perm { font-size: 12px; padding-top: 3px; white-space: nowrap; flex-shrink: 0; }
-  .proj-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .proj-name { color: var(--blue); font-weight: 500; }
-  .proj-title { font-size: 13px; }
-  .proj-sum { color: var(--muted); font-size: 13px; margin: 2px 0 6px; }
-  @media (max-width: 640px) { .perm { display: none; } }
-
-  .json { margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg);
-    font-family: var(--font); font-size: 13px; line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
-  .json :global(.k) { color: var(--pink); }
-  .json :global(.s) { color: var(--green); }
-
-  .edu li { display: flex; flex-direction: column; margin: 0 0 14px; }
-  .edu li span:not(.role) { font-size: 13px; }
-
-  .now { border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; background: var(--bg); }
-  .now p { margin: 0; }
-  .now-label { color: var(--amber); }
-  .now-upd { font-size: 12px; margin-top: 6px !important; }
-
-  .top-status { margin: 0 0 10px; font-size: 13px; color: var(--green); }
-  .top-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
-  .top { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
-  .top th { text-align: left; font-weight: 500; color: var(--bg); background: var(--green); padding: 4px 12px; }
-  .top td { padding: 4px 12px; color: var(--muted); }
-  .top td.num { color: var(--text); }
-  .top td.cmd { color: var(--green); }
-  .top tbody tr:first-child td { padding-top: 8px; }
-  .top tbody tr:last-child td { padding-bottom: 8px; }
-  @media (max-width: 640px) {
-    .top th:nth-child(2), .top td:nth-child(2), .top th:nth-child(4), .top td:nth-child(4) { display: none; }
-    .top th, .top td { padding-left: 10px; padding-right: 10px; }
-  }
-
-  .hobbies { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 24px; }
-  .hobbies li { display: flex; flex-direction: column; padding-left: 18px; position: relative; }
-  .hobbies li::before { content: "*"; position: absolute; left: 0; color: var(--dim); }
-  .h-name { color: var(--text); }
-  .hobbies .dim { font-size: 13px; }
-
-  .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-  .photos figure { margin: 0; }
-  .photos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; border: 1px solid var(--line); border-radius: 6px; }
-  .photos figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; }
-
-  .contact li { margin: 4px 0; }
-  .end { margin-top: 24px; }
-  .block { display: inline-block; width: 9px; height: 17px; background: var(--green); vertical-align: -3px; animation: blink 1.1s steps(1) infinite; }
-</style>

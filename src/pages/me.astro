@@ -1,0 +1,79 @@
+---
+import Base from "../layouts/Base.astro";
+import Prompt from "../components/Prompt.astro";
+import { profile, now, hobbies, top, topStatus, photos } from "../data/site";
+
+const nav = [
+  { href: "/me/", label: "~/me", match: "/me" },
+  { href: "/me/#top", label: "./top" },
+  { href: "/me/#hobbies", label: "./hobbies" },
+  { href: "/me/#photos", label: "./photos" },
+  { href: "/", label: "cd ~/work" },
+];
+---
+<Base title="Off duty" description={profile.casualAbout} nav={nav}>
+  <section class="hero" aria-labelledby="name">
+    <Prompt cmd="whoami --casual" as="p" />
+    <h1 id="name" class="name">chi ho<span class="cursor" aria-hidden="true">_</span></h1>
+    <p class="tagline">// off duty, mostly</p>
+    <p class="about">{profile.casualAbout}</p>
+  </section>
+
+  <section id="now" aria-label="Now">
+    <Prompt cmd="./now" />
+    <div class="now">
+      {now.items.map((n) => (
+        <p><span class="now-label">[{n.label}]</span> {n.href ? <a href={n.href}>{n.text}</a> : n.text}</p>
+      ))}
+      <p class="dim now-upd">last updated {now.updated}</p>
+    </div>
+  </section>
+
+  <section id="top" aria-label="What's running">
+    <Prompt cmd="top -n 1" />
+    <p class="top-status"><span class="dim">status:</span> {topStatus}</p>
+    <div class="top-wrap">
+      <table class="top">
+        <thead>
+          <tr><th>PID</th><th>USER</th><th>%CPU</th><th>%MEM</th><th>TIME</th><th>COMMAND</th></tr>
+        </thead>
+        <tbody>
+          {top.map((t) => (
+            <tr><td>{t.pid}</td><td>{t.user}</td><td class="num">{t.cpu}</td><td class="num">{t.mem}</td><td>{t.time}</td><td class="cmd">{t.cmd}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="hobbies" aria-label="Hobbies">
+    <Prompt cmd="cat hobbies.txt" />
+    <ul class="hobbies">
+      {hobbies.map((h) => (
+        <li><span class="h-name">{h.name}</span><span class="dim">{h.note}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="photos" aria-label="Photos">
+    <Prompt cmd="ls ~/photos" />
+    <div class="photos">
+      {photos.map((p) => (
+        <figure>
+          <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
+          <figcaption>{p.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section id="contact" aria-label="Contact">
+    <Prompt cmd="./ping.sh" />
+    <p class="muted">Climbing session, gym buddy, or airsoft weekend? You know where to find me.</p>
+    <ul class="contact">
+      <li><span class="dim">[github]</span> <a href={profile.github} rel="noopener">github.com/{profile.githubUser}</a></li>
+    </ul>
+    <p class="muted off-duty">Here for work? <a href="/">cd ~/work</a> for experience and projects.</p>
+    <p class="prompt end"><span class="user">{profile.handle}@{profile.host}</span>:<span style="color:var(--blue)">~/me</span>$ <span class="block" aria-hidden="true"></span></p>
+  </section>
+</Base>

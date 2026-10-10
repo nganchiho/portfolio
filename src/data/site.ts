@@ -9,6 +9,8 @@ export const profile = {
   email: "nganchihon@gmail.com",
   github: "https://github.com/nganchiho",
   githubUser: "nganchiho",
+  casualAbout:
+    "Hey, I'm Chi Ho. I write code for race cars, lift, climb, shoot arrows and airsoft, grind LeetCode, and spend too long perfecting Claude prompts. Somehow I'm still asleep by 10.",
 };
 
 export const now = {
@@ -27,6 +29,8 @@ export const hobbies = [
   { name: "airsoft", note: "weekend skirmishes" },
   { name: "photography", note: "cars, people, and the occasional LCD" },
   { name: "gaming", note: "the off switch" },
+  { name: "claude prompting", note: "rewriting one prompt ten times until it's just right" },
+  { name: "leetcode", note: "keeping the problem-solving muscles warm" },
   { name: "music", note: "always on while coding" },
   { name: "cooking", note: "fuel for all of the above" },
 ];
@@ -36,6 +40,8 @@ export const topStatus = "healthiest engineer on the team: lights out at 22:00, 
 export const top = [
   { pid: 1, user: "chiho", cpu: "64.2", mem: "38.0", time: "∞", cmd: "coding --until 21:59" },
   { pid: 42, user: "chiho", cpu: "21.7", mem: "12.4", time: "2h/day", cmd: "gym --no-skip-leg-day" },
+  { pid: 200, user: "chiho", cpu: "18.3", mem: "6.1", time: "often", cmd: "leetcode --grind" },
+  { pid: 256, user: "chiho", cpu: "15.9", mem: "9.8", time: "lots", cmd: "claude --prompt" },
   { pid: 404, user: "root", cpu: "99.9", mem: "0.5", time: "always", cmd: "caffeine.d --daemon" },
   { pid: 1337, user: "chiho", cpu: "100.0", mem: "0.0", time: "8h", cmd: "sleep --at 22:00" },
 ];
@@ -209,5 +215,7 @@ export const skills = {
   languages: ["C++", "C", "Python", "PHP", "JavaScript", "SQL", "HTML/CSS"],
   embedded: ["Embedded C++", "AVR", "CAN bus", "PCB design (KiCad)"],
   security: ["Burp Suite", "Nmap", "OWASP ZAP", "Wi-Fi pentesting", "Digital forensics"],
+  ai: ["Prompt engineering", "Claude"],
+  practice: ["LeetCode"],
   tools: ["Git", "GitHub", "Linux shell", "Docker", "Arduino IDE", "PyCharm"],
 };
