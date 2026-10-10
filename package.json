@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "vercel-build": "astro build && rm -rf .vercel/output && mkdir -p .vercel/output && cp -r dist .vercel/output/static && echo '{\"version\":3,\"trailingSlash\":true}' > .vercel/output/config.json"
   },
   "keywords": [],
   "author": "",
