@@ -22,19 +22,22 @@ export const now = {
 };
 
 export const hobbies = [
-  { name: "motorsports", note: "the reason I write firmware for race cars" },
-  { name: "coding", note: "side projects, always committed before bedtime" },
-  { name: "gym", note: "lifting, and not skipping leg day" },
-  { name: "rock climbing", note: "problem solving, but vertical" },
-  { name: "archery", note: "aim, breathe, release" },
   { name: "airsoft", note: "weekend skirmishes" },
-  { name: "aviation", note: "anything with wings and an engine" },
-  { name: "photography", note: "cars, people, and the occasional LCD" },
-  { name: "gaming", note: "the off switch" },
+  { name: "archery", note: "aim, breathe, release" },
   { name: "claude prompting", note: "rewriting one prompt ten times until it's just right" },
+  { name: "coding", note: "side projects, always committed before bedtime" },
+  { name: "cooking", note: "fuel for everything else on this list" },
+  { name: "gaming", note: "the off switch" },
+  { name: "gym", note: "lifting, and not skipping leg day" },
   { name: "leetcode", note: "keeping the problem-solving muscles warm" },
+  { name: "photography", note: "cars, people, and the occasional LCD" },
+  { name: "rock climbing", note: "problem solving, but vertical" },
+];
+
+export const interests = [
+  { name: "aviation", note: "anything with wings and an engine" },
+  { name: "motorsports", note: "the reason I write firmware for race cars" },
   { name: "music", note: "always on while coding" },
-  { name: "cooking", note: "fuel for all of the above" },
 ];
 
 export const topStatus = "healthiest engineer on the team: lights out at 22:00, every night";

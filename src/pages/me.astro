@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Prompt from "../components/Prompt.astro";
-import { profile, now, hobbies, top, topStatus, photos } from "../data/site";
+import { profile, now, hobbies, interests, top, topStatus, photos } from "../data/site";
 
 const nav = [
   { href: "/me/", label: "~/me", match: "/me" },
@@ -50,6 +50,15 @@ const nav = [
     <Prompt cmd="cat hobbies.txt" />
     <ul class="hobbies">
       {hobbies.map((h) => (
+        <li><span class="h-name">{h.name}</span><span class="dim">{h.note}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="interests" aria-label="Interests">
+    <Prompt cmd="cat interests.txt" />
+    <ul class="hobbies">
+      {interests.map((h) => (
         <li><span class="h-name">{h.name}</span><span class="dim">{h.note}</span></li>
       ))}
     </ul>
