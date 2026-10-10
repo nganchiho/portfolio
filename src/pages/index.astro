@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Prompt from "../components/Prompt.astro";
-import { profile, education, experience, projects, skills, now, hobbies, top, photos } from "../data/site";
+import { profile, education, experience, projects, skills, now, hobbies, top, topStatus, photos } from "../data/site";
 ---
 <Base>
   <section class="hero" aria-labelledby="name">
@@ -75,6 +75,7 @@ import { profile, education, experience, projects, skills, now, hobbies, top, ph
 
   <section id="top" aria-label="What's running">
     <Prompt cmd="top -n 1" />
+    <p class="top-status"><span class="dim">status:</span> {topStatus}</p>
     <div class="top-wrap">
       <table class="top">
         <thead>
@@ -183,6 +184,7 @@ import { profile, education, experience, projects, skills, now, hobbies, top, ph
   .now-label { color: var(--amber); }
   .now-upd { font-size: 12px; margin-top: 6px !important; }
 
+  .top-status { margin: 0 0 10px; font-size: 13px; color: var(--green); }
   .top-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
   .top { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
   .top th { text-align: left; font-weight: 500; color: var(--bg); background: var(--green); padding: 4px 12px; }

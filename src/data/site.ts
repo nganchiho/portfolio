@@ -20,7 +20,7 @@ export const now = {
 
 export const hobbies = [
   { name: "motorsports", note: "the reason I write firmware for race cars" },
-  { name: "coding", note: "side projects, usually started at midnight" },
+  { name: "coding", note: "side projects, always committed before bedtime" },
   { name: "gym", note: "lifting, and not skipping leg day" },
   { name: "rock climbing", note: "problem solving, but vertical" },
   { name: "archery", note: "aim, breathe, release" },
@@ -31,11 +31,13 @@ export const hobbies = [
   { name: "cooking", note: "fuel for all of the above" },
 ];
 
+export const topStatus = "healthiest engineer on the team: lights out at 22:00, every night";
+
 export const top = [
-  { pid: 1, user: "chiho", cpu: "64.2", mem: "38.0", time: "∞", cmd: "coding --until 3am" },
+  { pid: 1, user: "chiho", cpu: "64.2", mem: "38.0", time: "∞", cmd: "coding --until 21:59" },
   { pid: 42, user: "chiho", cpu: "21.7", mem: "12.4", time: "2h/day", cmd: "gym --no-skip-leg-day" },
   { pid: 404, user: "root", cpu: "99.9", mem: "0.5", time: "always", cmd: "caffeine.d --daemon" },
-  { pid: 1337, user: "chiho", cpu: "7.1", mem: "4.2", time: "0:00", cmd: "sleep" },
+  { pid: 1337, user: "chiho", cpu: "100.0", mem: "0.0", time: "8h", cmd: "sleep --at 22:00" },
 ];
 
 export const photos = [
