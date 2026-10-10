@@ -54,12 +54,6 @@ export const photos = [
     caption: "dash-wheel.jpg · DASH live on the steering wheel",
   },
   {
-    src: "/photos/dash-pcb.jpg",
-    alt: "KiCad layout of the Dash 1.2 PCB",
-    caption: "dash-pcb.jpg · Dash 1.2, PCB and code by me",
-    wide: true,
-  },
-  {
     src: "/photos/dash-lcd.jpg",
     alt: "Close-up of a blue 20×4 character LCD showing large pixel digits",
     caption: "dash-lcd.jpg · DASH up close, one 5×8 cell at a time",
@@ -142,12 +136,6 @@ export const projects: Project[] = [
         src: "/photos/dash-wheel.jpg",
         alt: "DASH LCD mounted on the steering wheel showing speed, RPM, throttle, VCU warnings, and odometer",
         caption: "on the wheel: speed, RPM, throttle, VCU warnings, and odometer",
-      },
-      {
-        src: "/photos/dash-pcb.jpg",
-        alt: "KiCad layout of the Dash 1.2 PCB with three CAN transceivers, microSD slot, and power regulation",
-        caption: "Dash 1.2 PCB in KiCad",
-        wide: true,
       },
       {
         src: "/photos/dash-lcd.jpg",
