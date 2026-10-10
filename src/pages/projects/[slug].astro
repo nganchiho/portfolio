@@ -1,0 +1,57 @@
+---
+import Base from "../../layouts/Base.astro";
+import Prompt from "../../components/Prompt.astro";
+import { projects, type Project } from "../../data/site";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const idx = projects.findIndex((p) => p.slug === project.slug);
+const next = projects[(idx + 1) % projects.length];
+---
+<Base title={project.name} description={project.summary}>
+  <article>
+    <Prompt cmd={`cat projects/${project.slug}/README.md`} as="p" />
+    <a class="back" href="/#projects">← cd ..</a>
+    <h1 class="title"># {project.name}</h1>
+    <p class="meta dim">{project.year}</p>
+    <div class="tags">{project.stack.map((s) => <span class="tag">{s}</span>)}</div>
+    <p class="summary">{project.summary}</p>
+
+    {project.sections.map((s) => (
+      <section class="sec">
+        <h2>## {s.heading}</h2>
+        {s.body.length > 1
+          ? <ul class="points">{s.body.map((b) => <li>{b}</li>)}</ul>
+          : <p>{s.body[0]}</p>}
+      </section>
+    ))}
+
+    {project.links && project.links.length > 0 && (
+      <section class="sec">
+        <h2>## Links</h2>
+        <ul class="points">{project.links.map((l) => <li><a href={l.href} rel="noopener">{l.label}</a></li>)}</ul>
+      </section>
+    )}
+
+    <nav class="next" aria-label="Next project">
+      <span class="dim">next:</span> <a href={`/projects/${next.slug}/`}>{next.slug}/</a>
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .back { display: inline-block; font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+  .title { font-size: clamp(22px, 5vw, 30px); color: var(--green); }
+  .meta { margin: 4px 0 10px; font-size: 13px; }
+  .tags { margin: 0 0 8px; }
+  .summary { font-size: 16px; max-width: 62ch; margin: 0 0 36px; }
+  .sec { margin: 0 0 32px; }
+  .sec h2 { font-size: 16px; color: var(--blue); margin: 0 0 10px; }
+  .sec p { color: var(--muted); max-width: 66ch; margin: 0; }
+  .points li { color: var(--muted); padding-left: 18px; position: relative; margin: 0 0 4px; }
+  .points li::before { content: ">"; position: absolute; left: 0; color: var(--dim); }
+  .next { border-top: 1px dashed var(--line); padding-top: 18px; margin-bottom: 32px; font-size: 14px; }
+</style>

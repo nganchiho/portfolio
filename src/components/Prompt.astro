@@ -1,0 +1,9 @@
+---
+import { profile } from "../data/site";
+interface Props { cmd: string; as?: "h2" | "p" }
+const { cmd, as = "h2" } = Astro.props;
+const Tag = as;
+---
+<Tag class="prompt" style="font-size:14px;margin:0 0 16px;font-weight:400">
+  <span class="user">{profile.handle}@{profile.host}</span>:<span style="color:var(--blue)">~</span>$ <span class="cmd">{cmd}</span>
+</Tag>
