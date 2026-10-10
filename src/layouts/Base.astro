@@ -7,15 +7,15 @@ interface Props {
   title?: string;
   description?: string;
   nav?: NavLink[];
+  noindex?: boolean;
 }
 const workNav: NavLink[] = [
   { href: "/", label: "~/work", match: "/" },
   { href: "/#experience", label: "./experience" },
   { href: "/#projects", label: "./projects", match: "/projects" },
   { href: "/#contact", label: "./contact" },
-  { href: "/me/", label: "cd ~/me" },
 ];
-const { title, description = profile.about, nav = workNav } = Astro.props;
+const { title, description = profile.about, nav = workNav, noindex = false } = Astro.props;
 const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.tagline}`;
 const path = Astro.url.pathname;
 ---
@@ -26,6 +26,7 @@ const path = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

@@ -8,10 +8,9 @@ const nav = [
   { href: "/me/#top", label: "./top" },
   { href: "/me/#hobbies", label: "./hobbies" },
   { href: "/me/#photos", label: "./photos" },
-  { href: "/", label: "cd ~/work" },
 ];
 ---
-<Base title="Off duty" description={profile.casualAbout} nav={nav}>
+<Base title="Off duty" description={profile.casualAbout} nav={nav} noindex>
   <section class="hero" aria-labelledby="name">
     <Prompt cmd="whoami --casual" as="p" />
     <h1 id="name" class="name">chi ho<span class="cursor" aria-hidden="true">_</span></h1>
@@ -23,7 +22,7 @@ const nav = [
     <Prompt cmd="./now" />
     <div class="now">
       {now.items.map((n) => (
-        <p><span class="now-label">[{n.label}]</span> {n.href ? <a href={n.href}>{n.text}</a> : n.text}</p>
+        <p><span class="now-label">[{n.label}]</span> {n.text}</p>
       ))}
       <p class="dim now-upd">last updated {now.updated}</p>
     </div>
@@ -83,7 +82,6 @@ const nav = [
       <li><span class="dim">[instagram]</span> <a href={`https://instagram.com/${profile.instagram}`} rel="noopener">@{profile.instagram}</a> <span class="dim">(not taken, I'm single)</span></li>
       <li><span class="dim">[github]</span> <a href={profile.github} rel="noopener">github.com/{profile.githubUser}</a></li>
     </ul>
-    <p class="muted off-duty">Here for work? <a href="/">cd ~/work</a> for experience and projects.</p>
     <p class="prompt end"><span class="user">{profile.handle}@{profile.host}</span>:<span style="color:var(--blue)">~/me</span>$ <span class="block" aria-hidden="true"></span></p>
   </section>
 </Base>
