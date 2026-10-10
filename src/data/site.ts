@@ -9,6 +9,7 @@ export const profile = {
   email: "nganchihon@gmail.com",
   github: "https://github.com/nganchiho",
   githubUser: "nganchiho",
+  instagram: "chiho_whichis_apparently_taken",
   casualAbout:
     "Hey, I'm Chi Ho. I write code for race cars, lift, climb, shoot arrows and airsoft, grind LeetCode, and spend too long perfecting Claude prompts. Somehow I'm still asleep by 10.",
 };
