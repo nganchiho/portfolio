@@ -157,8 +157,7 @@ export const projects: Project[] = [
       {
         heading: "Hardware",
         body: [
-          "I designed the Dash 1.2 PCB in KiCad, building on the original V1 board by lknetwork.",
-          "Three CAN transceivers for the car's separate buses, a microSD slot for logging, onboard power regulation, and an ISP header for flashing the ATmega328P.",
+          "The board carries three CAN transceivers for the car's separate buses, a microSD slot for logging, onboard power regulation, and an ISP header for flashing the ATmega328P.",
         ],
       },
       {
