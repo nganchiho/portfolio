@@ -236,7 +236,7 @@ export const skills = {
   languages: ["C++", "C", "Python", "PHP", "JavaScript", "SQL", "HTML/CSS"],
   embedded: ["Embedded C++", "AVR", "CAN bus", "PCB design (KiCad)"],
   security: ["Burp Suite", "Nmap", "OWASP ZAP", "Wi-Fi pentesting", "Digital forensics"],
-  ai: ["Prompt engineering", "Claude"],
+  ai: ["Prompt engineering", "Claude", "Claude Code", "Gemini", "GitHub Copilot"],
   practice: ["LeetCode"],
   tools: ["Git", "GitHub", "Linux shell", "Docker", "Arduino IDE", "PyCharm"],
 };
