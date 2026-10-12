@@ -12,9 +12,9 @@ const nav = [
 ---
 <Base title="Off duty" description={profile.casualAbout} nav={nav} noindex>
   <section class="hero" aria-labelledby="name">
-    <Prompt cmd="whoami --casual" as="p" />
+    <Prompt cmd="whoami" as="p" />
     <h1 id="name" class="name">chi ho<span class="cursor" aria-hidden="true">_</span></h1>
-    <p class="tagline">// off duty, mostly</p>
+    <p class="tagline">// the non-work side</p>
     <p class="about">{profile.casualAbout}</p>
   </section>
 
@@ -76,10 +76,10 @@ const nav = [
   </section>
 
   <section id="contact" aria-label="Contact">
-    <Prompt cmd="./ping.sh" />
-    <p class="muted">Up for a climb, an airsoft weekend, or just hanging out? You know where to find me.</p>
+    <Prompt cmd="./contact" />
+    <p class="muted">Always happy to hang out. Here's where to find me.</p>
     <ul class="contact">
-      <li><span class="dim">[instagram]</span> <a href={`https://instagram.com/${profile.instagram}`} rel="noopener">@{profile.instagram}</a> <span class="dim">(not taken, I'm single)</span></li>
+      <li><span class="dim">[instagram]</span> <a href={`https://instagram.com/${profile.instagram}`} rel="noopener">@{profile.instagram}</a></li>
       <li><span class="dim">[github]</span> <a href={profile.github} rel="noopener">github.com/{profile.githubUser}</a></li>
     </ul>
     <p class="prompt end"><span class="user">{profile.handle}@{profile.host}</span>:<span style="color:var(--blue)">~/me</span>$ <span class="block" aria-hidden="true"></span></p>

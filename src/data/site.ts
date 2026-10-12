@@ -11,7 +11,7 @@ export const profile = {
   githubUser: "nganchiho",
   instagram: "chiho_whichis_apparently_taken",
   casualAbout:
-    "Hey, I'm Chi Ho. I write code for race cars, lift, climb, shoot arrows and airsoft, grind LeetCode, and spend too long perfecting Claude prompts. Somehow I'm still asleep by 10.",
+    "Hi, I'm Chi Ho, a computer engineering student at HKUST. Outside of class you'll usually find me working on the race car, at the gym, climbing, or out taking photos. Always in bed by 10.",
 };
 
 export const now = {
@@ -22,31 +22,31 @@ export const now = {
 };
 
 export const hobbies = [
-  { name: "airsoft", note: "weekend skirmishes" },
-  { name: "archery", note: "aim, breathe, release" },
-  { name: "claude prompting", note: "rewriting one prompt ten times until it's just right" },
-  { name: "coding", note: "side projects, always committed before bedtime" },
-  { name: "cooking", note: "fuel for everything else on this list" },
-  { name: "gaming", note: "the off switch" },
-  { name: "gym", note: "lifting, and not skipping leg day" },
-  { name: "leetcode", note: "keeping the problem-solving muscles warm" },
-  { name: "photography", note: "cars, people, and the occasional LCD" },
-  { name: "rock climbing", note: "problem solving, but vertical" },
+  { name: "airsoft", note: "weekend games with friends" },
+  { name: "archery", note: "calm and focused" },
+  { name: "claude prompting", note: "seeing how far a good prompt can go" },
+  { name: "coding", note: "side projects outside class" },
+  { name: "cooking", note: "good food after a long day" },
+  { name: "gaming", note: "how I unwind" },
+  { name: "gym", note: "lifting and staying healthy" },
+  { name: "leetcode", note: "keeping my problem solving sharp" },
+  { name: "photography", note: "cars, people, and places" },
+  { name: "rock climbing", note: "part workout, part puzzle" },
 ];
 
 export const interests = [
-  { name: "aviation", note: "anything with wings and an engine" },
-  { name: "motorsports", note: "the reason I write firmware for race cars" },
-  { name: "music", note: "always on while coding" },
+  { name: "aviation", note: "planes and everything about flight" },
+  { name: "motorsports", note: "what got me into building race cars" },
+  { name: "music", note: "always playing in the background" },
 ];
 
-export const topStatus = "healthiest engineer on the team: lights out at 22:00, every night";
+export const topStatus = "probably the healthiest engineer around: asleep by 10pm";
 
 export const top = [
   { pid: 1, user: "chiho", cpu: "64.2", mem: "38.0", time: "∞", cmd: "coding --until 21:59" },
-  { pid: 42, user: "chiho", cpu: "21.7", mem: "12.4", time: "2h/day", cmd: "gym --no-skip-leg-day" },
-  { pid: 200, user: "chiho", cpu: "18.3", mem: "6.1", time: "often", cmd: "leetcode --grind" },
-  { pid: 256, user: "chiho", cpu: "15.9", mem: "9.8", time: "lots", cmd: "claude --prompt" },
+  { pid: 42, user: "chiho", cpu: "21.7", mem: "12.4", time: "2h/day", cmd: "gym" },
+  { pid: 200, user: "chiho", cpu: "18.3", mem: "6.1", time: "often", cmd: "leetcode" },
+  { pid: 256, user: "chiho", cpu: "15.9", mem: "9.8", time: "lots", cmd: "claude" },
   { pid: 404, user: "root", cpu: "99.9", mem: "0.5", time: "always", cmd: "caffeine.d --daemon" },
   { pid: 1337, user: "chiho", cpu: "100.0", mem: "0.0", time: "8h", cmd: "sleep --at 22:00" },
 ];
@@ -55,12 +55,12 @@ export const photos = [
   {
     src: "/photos/dash-wheel.jpg",
     alt: "DASH LCD mounted on the steering wheel of the Formula Student car",
-    caption: "dash-wheel.jpg · DASH live on the steering wheel",
+    caption: "DASH on the steering wheel",
   },
   {
     src: "/photos/dash-lcd.jpg",
     alt: "Close-up of a blue 20×4 character LCD showing large pixel digits",
-    caption: "dash-lcd.jpg · DASH up close, one 5×8 cell at a time",
+    caption: "DASH screen up close",
   },
 ];
 
