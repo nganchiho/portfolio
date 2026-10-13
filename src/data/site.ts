@@ -11,7 +11,7 @@ export const profile = {
   githubUser: "nganchiho",
   instagram: "chiho_whichis_apparently_taken",
   casualAbout:
-    "Hi, I'm Chi Ho, a computer engineering student at HKUST. Outside of class you'll usually find me working on the race car, at the gym, climbing, or out taking photos. Always in bed by 10.",
+    "Hi, I'm Chi Ho. I study computer engineering at HKUST and spend most of my free time on the race car team, at the gym, or climbing.",
 };
 
 export const now = {
