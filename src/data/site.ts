@@ -31,6 +31,7 @@ export const hobbies = [
   { name: "gym", note: "lifting and staying healthy" },
   { name: "leetcode", note: "keeping my problem solving sharp" },
   { name: "photography", note: "cars, people, and places" },
+  { name: "powerlifting", note: "squat, bench, and deadlift" },
   { name: "rock climbing", note: "part workout, part puzzle" },
 ];
 
